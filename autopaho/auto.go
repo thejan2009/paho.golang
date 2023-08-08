@@ -192,7 +192,7 @@ func NewConnection(ctx context.Context, cfg ClientConfig) (*ConnectionManager, e
 		cancelCtx: cancel,
 		done:      make(chan struct{}),
 	}
-	errChan := make(chan error, 1) // Will be sent one, and only one error per connection (buffered to prevent deadlock)
+	errChan := make(chan error)
 
 	go func() {
 		defer close(c.done)
